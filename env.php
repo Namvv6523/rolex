@@ -25,11 +25,6 @@ function redirect($key,$msg,$route) {
     header('location:'.BASE_URL.$route."?msg=".$key);die;
 }
 
-// function redirect($key = "",$msg = "",$url ="") {
-//     $_SESSION[$key] = $msg;
-//     header('location: ' . BASE_URL . $url."?msg=".$key);die;
-// }
-
 function route($name) {
     return BASE_URL.$name;
 }

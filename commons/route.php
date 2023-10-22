@@ -1,5 +1,6 @@
 <?php
 
+
 use Phroute\Phroute\RouteCollector;
 
 $url = !isset($_GET['url']) ? "/" : $_GET['url'];
@@ -20,6 +21,12 @@ $router->post('category/create',[App\Controllers\CategoryController::class, 'cre
 $router->get('category/detail/{id}',[App\Controllers\CategoryController::class, 'detail']);
 $router->post('category/update/{id}',[App\Controllers\CategoryController::class, 'update']);
 $router->get('category/delete/{id}',[App\Controllers\CategoryController::class, 'delete']);
+
+// Product
+$router->get('product/show',[\App\Controllers\ProductController::class, 'showPrd']);
+$router->get('product/store',[\App\Controllers\ProductController::class, 'store']);
+$router->post('product/create',[\App\Controllers\ProductController::class, 'create']);
+$router->get('product/delete/{id}',[\App\Controllers\ProductController::class, 'delete']);
 
 // bắt đầu định nghĩa ra các đường dẫn
 $router->get('/', function(){

@@ -1,20 +1,76 @@
 <?php $_shouldextend[1]=1; ?>
 <?php $this->startSection('content'); ?>
+
  <?php if(isset($_SESSION['errors']) && isset($_GET['msg'])): ?>
  <ul>
  <?php $__currentLoopData = $_SESSION['errors']; $this->addLoop($__currentLoopData);$this->getFirstLoop();
- foreach($__currentLoopData as $e): $loop = $this->incrementLoopIndices();  ?>
- <li style="color: red"><?php echo \htmlentities($e??'', ENT_QUOTES, 'UTF-8', false); ?></li>
+ foreach($__currentLoopData as $error): $loop = $this->incrementLoopIndices();  ?>
+ <li style="color: red"><?php echo \htmlentities($error??'', ENT_QUOTES, 'UTF-8', false); ?></li>
  <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </ul>
  <?php endif; ?>
+
  <?php if(isset($_SESSION['success']) && isset($_GET['msg'])): ?>
  <span style="color: green"><?php echo \htmlentities($_SESSION['success']??'', ENT_QUOTES, 'UTF-8', false); ?></span>
  <?php endif; ?>
- <form method="post" action="<?php echo \htmlentities(BASE_URL."add-form"??'', ENT_QUOTES, 'UTF-8', false); ?>">
- Tên SP<input type="text" name="ten_sp" value=""></br>
- Đơn giá<input type="text" name="don_gia" value="">
- <input type="submit" name="them">
+
+ <div class="container">
+ <div class="card">
+ <div class="card-header d-flex justify-content-between">
+ <div class="header-title">
+ <h4 class="card-title justify-content-center">Thêm sản phẩm</h4>
+ </div>
+ </div>
+ <div class="card-body">
+ <form method="POST" action="<?php echo \htmlentities(BASE_URL??'', ENT_QUOTES, 'UTF-8', false); ?>product/create" enctype="multipart/form-data">
+ <div class="row">
+
+ <div class="col-md-12">
+ <div class="form-group">
+ <label>Loại sản phẩm <span style="color: red">*</span></label>
+ <select class="selectpicker form-control" data-style="py-0" name="iddm">
+ <option value="">--Chọn danh mục--</option>
+ <?php $__currentLoopData = $loadCate; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $cate): $loop = $this->incrementLoopIndices();  ?>
+ <option value=" <?php echo \htmlentities($cate->id??'', ENT_QUOTES, 'UTF-8', false); ?>" class="fs-6 h-25"> <?php echo \htmlentities($cate->name??'', ENT_QUOTES, 'UTF-8', false); ?>
+
+ </option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </div>
+ </div>
+
+ <div class="mb-3 col-6">
+ <label class="form-label">Tên sản phẩm <span style="color: red">*</span></label>
+ <input type="text" class="form-control" name="name">
+ </div>
+
+ <div class="mb-3 col-6">
+ <label class="form-label">Giá <span style="color: red">*</span></label>
+ <input type="text" class="form-control" name="price">
+ </div>
+
+ <div class="col-md-12">
+ <div class="form-group">
+ <label>Hình ảnh <span style="color: red">*</span></label>
+ <input type="file" class="form-control" name="image">
+ </div>
+ </div>
+
+ <div class="mb-3 col-md-12">
+ <label class="form-label">Số lượng <span style="color: red">*</span></label>
+ <input type="text" class="form-control" name="quantity">
+ </div>
+
+ <div class="d-flex justify-content-center col-md-12">
+ <input type="submit" name="submit" value="Thêm" class="btn btn-success mt-3 ">
+ </div>
+ </div>
+
  </form>
+ </div>
+ </div>
+ </div>
 <?php $this->stopSection(); ?>
-<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.index'); } ?>

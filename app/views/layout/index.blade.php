@@ -78,12 +78,12 @@
                                 </a>
                                 <ul id="product" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                     <li class="">
-                                        <a href="page-list-product.html">
+                                        <a href="{{BASE_URL}}product/show">
                                             <i class="las la-minus"></i><span>Danh sách sản phẩm</span>
                                         </a>
                                     </li>
                                     <li class="">
-                                        <a href="page-add-product.html">
+                                        <a href="{{BASE_URL}}product/store">
                                             <i class="las la-minus"></i><span>Thêm sản phẩm</span>
                                         </a>
                                     </li>
